@@ -1,11 +1,13 @@
-# agents.py
-
 import json
 import re
-from gemini_utils import get_gemini_model
+from google import genai
+from google.genai import types
+from dotenv import load_dotenv
+from prompts import ANALYZE_COMPLAINT_PROMPT
 
-# ✅ Initialize the Gemini model once (Singleton pattern will ensure single instance)
-model = get_gemini_model()
+load_dotenv()
+
+client = genai.Client()
 
 def analyze_complaint(payload: dict):
     """
@@ -13,7 +15,6 @@ def analyze_complaint(payload: dict):
     Returns structured JSON containing classification and insights.
     """
 
-    # Prepare the input content
     contents = f"""
     Resident Name: {payload.get("resident_name")}
     Block/Area: {payload.get("block")}
@@ -21,22 +22,22 @@ def analyze_complaint(payload: dict):
     """
 
     try:
-        # 🔹 Generate AI response using already initialized model
-        response = model.generate_content(contents=contents)
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            config=types.GenerateContentConfig(
+            system_instruction=ANALYZE_COMPLAINT_PROMPT),
+            contents=contents)
         text_response = response.text.strip()
 
-        # 🔹 Extract valid JSON if wrapped in markdown or text
         cleaned_text = re.search(r"\{.*\}", text_response, re.DOTALL)
         if cleaned_text:
             text_response = cleaned_text.group(0)
 
-        # 🔹 Try parsing JSON safely
         try:
             ai_output = json.loads(text_response)
         except json.JSONDecodeError:
             ai_output = {"raw_text": text_response, "error": "Invalid JSON output"}
 
-        # 🔹 Merge the AI output with original data
         final_output = {
             **payload,
             **ai_output,
@@ -47,3 +48,13 @@ def analyze_complaint(payload: dict):
 
     except Exception as e:
         return {"error": str(e)}
+    
+if __name__ == "__main__":
+    payload = {
+        "resident_name": "Ritika Sharma",
+        "block": "Sector 8",
+        "description": "Street lights have not been working for the past 3 nights and the area feels unsafe."
+    }
+
+    result = analyze_complaint(payload)
+    print(json.dumps(result, indent=4))
