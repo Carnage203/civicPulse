@@ -1,12 +1,22 @@
+import os
 from pymongo import MongoClient
 from dotenv import load_dotenv
-import os
 
 load_dotenv()
 
-mongo_url = os.getenv("Mongo_URL")
+class MongoDBClient:
+    _instance = None
 
-client = MongoClient(mongo_url)
-db = client['civipulsedb']
-complaints_collection = db['complaints']
-print(complaints_collection)
+    def __new__(cls):
+        if cls._instance is None:
+            mongo_url = os.getenv("MONGO_URL")
+            client = MongoClient(mongo_url)
+            db = client["civipulsedb"]
+            cls._instance = super(MongoDBClient, cls).__new__(cls)
+            cls._instance.client = client
+            cls._instance.db = db
+            cls._instance.complaints = db["complaints"]
+        return cls._instance
+
+mongo_client = MongoDBClient()
+complaints_collection = mongo_client.complaints
