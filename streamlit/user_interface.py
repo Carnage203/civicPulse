@@ -1,20 +1,20 @@
 from pathlib import Path
 import sys
+import streamlit as st
 
 project_root = str(Path(__file__).resolve().parents[1])
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
-import streamlit as st
+st.set_page_config(layout="wide")
+
 from llm import agents, prompts
-from mongodb import mongo_client, handlers
+from mongodb.handlers import create_complaint
 
 def report_complaint_tab():
     st.header("Report a Civic Complaint")
-    
-    # Input fields
     name = st.text_input("Your Name")
-    location = st.text_input("Location of Issue")
+    location = st.text_input("Block of your residence")
     complaint_text = st.text_area("Describe your complaint in detail")
     user_data = {
         "resident_name": name,
@@ -23,16 +23,16 @@ def report_complaint_tab():
     }
     if st.button("Submit Complaint"):
         if name and location and complaint_text:
-            # Show loading spinner while processing
             with st.spinner("Processing your complaint..."):
-                try:
-                    
+                try:                
                     processed_complaint = agents.analyze_complaint(
                         user_data
-                    )
-                    
-                    
-                    handlers.create_complaint(processed_complaint)
+                    )                                   
+                    try:
+                        create_complaint(processed_complaint)
+                    except Exception as db_error:
+                        st.error(f"Error saving complaint to database: {str(db_error)}")
+                        return
                     
                     st.success("Complaint submitted successfully!")
                     
@@ -48,7 +48,6 @@ def admin_analytics_tab():
 def main():
     st.title("CivicPulse - Citizen Complaint Portal")
     
-    # Create tabs
     tab1, tab2 = st.tabs(["Report Complaint", "Admin Analytics"])
     
     with tab1:
