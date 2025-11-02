@@ -38,9 +38,11 @@ def analyze_complaint(payload: dict):
         except json.JSONDecodeError:
             ai_output = {"raw_text": text_response, "error": "Invalid JSON output"}
 
+        embedding = embed_generator(payload.get("description"))
         final_output = {
             **payload,
             **ai_output,
+            "embedding": embedding,
             "status": "open"
         }
 
@@ -48,13 +50,16 @@ def analyze_complaint(payload: dict):
 
     except Exception as e:
         return {"error": str(e)}
-    
-if __name__ == "__main__":
-    payload = {
-        "resident_name": "Ritika Sharma",
-        "block": "Sector 8",
-        "description": "Street lights have not been working for the past 3 nights and the area feels unsafe."
-    }
+        
 
-    result = analyze_complaint(payload)
-    print(json.dumps(result, indent=4))
+def embed_generator(contents:str):
+    try:
+        response = client.models.embed_content(
+        model="gemini-embedding-001",
+        contents= contents
+        )
+        return response.embeddings[0].values
+    except Exception as e:
+        print(f"Error generating embedding: {str(e)}")
+        return None
+

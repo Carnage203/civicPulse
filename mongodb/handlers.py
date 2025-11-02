@@ -1,6 +1,9 @@
 from mongodb.mongo_client import complaints_collection
 from datetime import datetime
 from bson import ObjectId
+from typing import List
+import time
+from llm.agents import embed_generator
 
 def create_complaint(complaint_data: dict) -> str:
     required_fields = {
@@ -13,6 +16,7 @@ def create_complaint(complaint_data: dict) -> str:
         "urgency_score": int,
         "llm_summary": str,
         "action_recommendation": str,
+        "embedding": list,
         "status": str
     }
 
@@ -54,22 +58,3 @@ def delete_complaint(complaint_id: str) -> bool:
     except:
         return False
 
-if __name__ == "__main__":
-    sample_complaint = {
-        "resident_name": "John Doe",
-        "block": "B-123",
-        "description": "Water leakage in kitchen pipeline causing dampness in walls",
-        "category": "Water",
-        "sentiment": "negative",
-        "severity_level": "high",
-        "urgency_score": 8,
-        "llm_summary": "Urgent water leakage issue in kitchen requiring immediate plumbing intervention",
-        "action_recommendation": "Dispatch plumbing team for immediate inspection and repair",
-        "status": "open"
-    }
-
-    try:
-        new_complaint_id = create_complaint(sample_complaint)
-        print(f"Created test complaint with ID: {new_complaint_id}")
-    except Exception as e:
-        print(f"Error creating test complaint: {str(e)}")
