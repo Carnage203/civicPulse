@@ -4,6 +4,8 @@ from google import genai
 from google.genai import types
 from dotenv import load_dotenv
 from llm.prompts import ANALYZE_COMPLAINT_PROMPT
+from collections import defaultdict
+from mongodb.handlers import get_all_complaints
 
 load_dotenv()
 
@@ -63,3 +65,51 @@ def embed_generator(contents:str):
         print(f"Error generating embedding: {str(e)}")
         return None
 
+
+def summarize_block_issues():
+    """
+    Fetch all complaints from MongoDB, group them block-wise,
+    and summarize each block's issues using Gemini.
+    """
+
+    complaints = get_all_complaints()
+    if not complaints:
+        print("No complaints found in database.")
+        return []
+
+    block_wise_complaints = defaultdict(list)
+    for c in complaints:
+        block = c.get("block", "Unknown")
+        block_wise_complaints[block].append(c.get("description", ""))
+
+    block_summaries = []
+
+    for block, descriptions in block_wise_complaints.items():
+        all_text = "\n".join(descriptions)
+
+        prompt = f"""
+        You are an AI civic data analyst for the CivicPulse system.
+        Summarize the main issues and recurring problems reported by residents
+        in Block {block}. Be concise (2-3 sentences) and focus on key concerns.
+        
+        Complaints:
+        {all_text}
+        """
+
+        try:
+            response = client.models.generate_content(
+                model="gemini-2.5-flash",
+                config=types.GenerateContentConfig(
+                    system_instruction="Summarize civic complaints clearly and briefly."
+                ),
+                contents=prompt
+            )
+
+            summary_text = response.text.strip()
+            block_summaries.append({"block": block, "summary": summary_text})
+
+        except Exception as e:
+            print(f"Error summarizing block {block}: {e}")
+            block_summaries.append({"block": block, "summary": "Error generating summary."})
+
+    return block_summaries
