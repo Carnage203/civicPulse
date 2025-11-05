@@ -1,15 +1,14 @@
 import json
 import re
-from google import genai
+from llm.llm_client import gemini_client
 from google.genai import types
 from dotenv import load_dotenv
 from llm.prompts import ANALYZE_COMPLAINT_PROMPT
+from llm.chat import embed_generator
 from collections import defaultdict
 from mongodb.handlers import get_all_complaints
 
-load_dotenv()
-
-client = genai.Client()
+client = gemini_client.client
 
 def analyze_complaint(payload: dict):
     """
@@ -52,18 +51,6 @@ def analyze_complaint(payload: dict):
 
     except Exception as e:
         return {"error": str(e)}
-        
-
-def embed_generator(contents:str):
-    try:
-        response = client.models.embed_content(
-        model="gemini-embedding-001",
-        contents= contents
-        )
-        return response.embeddings[0].values
-    except Exception as e:
-        print(f"Error generating embedding: {str(e)}")
-        return None
 
 
 def summarize_block_issues():
@@ -77,20 +64,31 @@ def summarize_block_issues():
         print("No complaints found in database.")
         return []
 
+    
     block_wise_complaints = defaultdict(list)
     for c in complaints:
         block = c.get("block", "Unknown")
         block_wise_complaints[block].append(c.get("description", ""))
 
+    
+    def sort_blocks(block_name):
+        match = re.match(r"([A-Z])(\d+)?", block_name.upper())
+        if match:
+            letter, num = match.groups()
+            return (letter, int(num) if num else 0)
+        return ("Z", 999)  
+
+    sorted_blocks = sorted(block_wise_complaints.items(), key=lambda x: sort_blocks(x[0]))
+
     block_summaries = []
 
-    for block, descriptions in block_wise_complaints.items():
+    for block, descriptions in sorted_blocks:
         all_text = "\n".join(descriptions)
 
         prompt = f"""
         You are an AI civic data analyst for the CivicPulse system.
         Summarize the main issues and recurring problems reported by residents
-        in Block {block}. Be concise (2-3 sentences) and focus on key concerns.
+        in Block {block}. Be concise (2–3 sentences) and focus on key concerns.
         
         Complaints:
         {all_text}
@@ -113,3 +111,4 @@ def summarize_block_issues():
             block_summaries.append({"block": block, "summary": "Error generating summary."})
 
     return block_summaries
+

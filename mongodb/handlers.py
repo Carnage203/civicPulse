@@ -3,7 +3,7 @@ from datetime import datetime
 from bson import ObjectId
 from typing import List
 import time
-from llm.agents import embed_generator
+from llm.chat import embed_generator
 
 def create_complaint(complaint_data: dict) -> str:
     required_fields = {
@@ -57,4 +57,5 @@ def delete_complaint(complaint_id: str) -> bool:
         return result.deleted_count > 0
     except:
         return False
+
 
