@@ -71,17 +71,20 @@ def summarize_block_issues():
         block_wise_complaints[block].append(c.get("description", ""))
 
     
-    def sort_blocks(block_name):
-        match = re.match(r"([A-Z])(\d+)?", block_name.upper())
-        if match:
-            letter, num = match.groups()
-            return (letter, int(num) if num else 0)
-        return ("Z", 999)  
+    block_order = ["A1", "A2", "A3", "A4", "A5", "B1", "B2", "B3", "B4"]
 
-    sorted_blocks = sorted(block_wise_complaints.items(), key=lambda x: sort_blocks(x[0]))
+    
+    sorted_blocks = [(block, block_wise_complaints[block])
+                     for block in block_order if block in block_wise_complaints]
+
+    
+    remaining_blocks = [(b, desc)
+                        for b, desc in block_wise_complaints.items() if b not in block_order]
+    sorted_blocks.extend(remaining_blocks)
 
     block_summaries = []
 
+    
     for block, descriptions in sorted_blocks:
         all_text = "\n".join(descriptions)
 
