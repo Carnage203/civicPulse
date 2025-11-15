@@ -1,294 +1,354 @@
 import sys
+import time
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 import streamlit as st
 
-# --- Path setup ---
+#  Path setup 
 project_root = str(Path(__file__).resolve().parents[1])
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
-# --- Imports ---
-from llm import agents, chat
-from mongodb.handlers import (
-    create_complaint,
-    get_complaints_by_status,
-    update_complaint_status
-)
+# Imports 
+try:
+    from llm import agents, chat
+    from mongodb.handlers import (
+        create_complaint,
+        get_complaints_by_status,
+        update_complaint_status
+    )
+except ImportError:
+    st.error("⚠️ Failed to import modules. Using mock data for UI preview.")
 
-# --- Streamlit page setup ---
+    def get_complaints_by_status(status):
+        now = datetime.now(timezone.utc)
+        if status == "open":
+            return [
+                {'_id': '1', 'resident_name': 'Pooja Gupta', 'block': 'B1', 'description': 'Road potholes on main road', 'category': 'Roads', 'severity_level': 'High', 'status': 'open', 'updated_at': now, 'action_recommendation': 'Repair the damaged road immediately.'},
+                {'_id': '2', 'resident_name': 'Ravi Kumar', 'block': 'C2', 'description': 'Streetlight not working', 'category': 'Electricity', 'severity_level': 'Medium', 'status': 'open', 'updated_at': now, 'action_recommendation': 'Replace faulty bulb within 24 hours.'}
+            ]
+        elif status == "closed":
+            return [
+                {'_id': '3', 'resident_name': 'Priya Sharma', 'block': 'B2', 'description': 'Garbage overflow issue', 'category': 'Garbage', 'severity_level': 'High', 'status': 'closed', 'resolved_at': now, 'action_recommendation': 'Increase garbage pickup frequency.'},
+            ]
+        elif status == "junk":
+            return [
+                {'_id': '4', 'resident_name': 'Rajesh Kumar', 'block': 'A1', 'description': 'Tap water discolored', 'category': 'Water', 'severity_level': 'High', 'status': 'junk', 'updated_at': now, 'action_recommendation': 'Check water pipeline contamination source.'},
+            ]
+        return []
+
+    def update_complaint_status(id, status, extra_fields=None):
+        print(f"Updating complaint {id} → {status} | Extras: {extra_fields}")
+
+    def create_complaint(data):
+        print(f"Creating complaint: {data}")
+
+    class MockAgents:
+        def analyze_complaint(self, data):
+            data['category'] = 'Uncategorized'
+            data['severity_level'] = 'Medium'
+            data['status'] = 'open'
+            data['created_at'] = datetime.now(timezone.utc)
+            return data
+        def summarize_block_issues(self):
+            return [{'block': 'A1', 'summary': 'Water issues are predominant.'}]
+        def generate_complaint_summary(self, description):
+            return f"Summary: {description[:70]}..."
+
+    class MockChat:
+        def chatbot(self, query):
+            return "This is a mock AI response."
+
+    agents = MockAgents()
+    chat = MockChat()
+
+
+# Streamlit page setup 
 st.set_page_config(page_title="CivicPulse Dashboard", layout="wide")
 
-# --- Fixed Light Theme Colors ---
-bg_color = "#f9fafc"
-card_bg = "#ffffff"
-text_color = "#1a1a1a"
-accent_gradient = "linear-gradient(90deg, #4A00E0, #8E2DE2)"  # purple-blue
-
-# --- Global Styling ---
-st.markdown(f"""
+# Global UI Styling 
+st.markdown("""
     <style>
-        .block-container {{
-            padding-top: 2.5rem;
-            padding-bottom: 3rem;
-            font-family: 'Inter', sans-serif;
-            background: {bg_color};
-        }}
+        h1, h2, h3, h4, h5 {
+            font-family: 'Segoe UI', sans-serif;
+        }
 
-        h1 {{
-            font-size: 2.4rem;
-            text-align: center;
-            background: -webkit-{accent_gradient};
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .block-container {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+            
+        .updated-card{
+            animation: flash 0.8s ease-in-out;
+        }
+        @keyframes flash {
+            0%{ background-color: #d1fae5;}
+            100% {background-color: transparent;}
+        }    
+
+        /* Header styling */
+        .kanban-header {
+            font-size: 20px;
             font-weight: 700;
-        }}
-
-        h2, h3, h4 {{
-            color: {text_color};
-        }}
-
-        .subheading {{
+            margin-bottom: 10px;
             text-align: center;
-            color: {text_color};
-            font-size: 1.05rem;
-            margin-top: -10px;
-            opacity: 0.8;
-        }}
-
-        /* Tabs */
-        .stTabs [data-baseweb="tab-list"] {{
-            gap: 12px;
-        }}
-        .stTabs [data-baseweb="tab"] {{
-            background-color: #e9ecef;
-            padding: 8px 22px;
-            border-radius: 12px;
-            font-weight: 500;
-            color: #1B2631;
-            transition: 0.3s;
-        }}
-        .stTabs [aria-selected="true"] {{
-            background: {accent_gradient} !important;
             color: white !important;
-            font-weight: 600;
-            transform: scale(1.05);
-        }}
-
-        /* Buttons */
-        div.stButton > button {{
-            background: {accent_gradient};
-            color: white;
-            font-weight: 600;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
             border-radius: 10px;
-            padding: 0.6rem 1.5rem;
-            border: none;
-            transition: all 0.3s ease;
-        }}
-        div.stButton > button:hover {{
-            opacity: 0.9;
-            transform: scale(1.03);
-        }}
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
 
-        /* Cards */
-        .complaint-card {{
-            background: {card_bg};
-            border: 1px solid rgba(0,0,0,0.05);
-            border-radius: 14px;
-            padding: 18px 25px;
-            margin-bottom: 16px;
-            box-shadow: 0px 4px 14px rgba(0,0,0,0.1);
-            transition: 0.3s ease;
-        }}
-        .complaint-card:hover {{
-            box-shadow: 0px 6px 20px rgba(0,0,0,0.15);
-            transform: translateY(-3px);
-        }}
-        .complaint-card h4 {{
-            color: {text_color};
-            margin-bottom: 8px;
-        }}
-        .complaint-card p {{
-            color: {text_color};
-            opacity: 0.9;
-        }}
+        /* Card text styling */
+        div[data-testid="stVerticalBlockBorderWrapper"] h4 {
+            margin-bottom: 5px;
+            color: #154360;
+        }
 
-        /* Chat bubble */
-        .ai-response {{
-            background: rgba(72,61,139,0.1);
-            border-left: 4px solid #8E2DE2;
-            border-radius: 10px;
-            padding: 12px 15px;
-            margin-top: 10px;
-            color: {text_color};
-        }}
+        div[data-testid="stVerticalBlockBorderWrapper"] p {
+            margin: 2px 0;
+            color: #1C1C1C;
+        }
+
+        /* Complaint summary highlight */
+        .summary-box {
+            background-color: rgba(255, 255, 200, 0.4);
+            border-left: 4px solid #facc15;
+            padding: 6px 10px;
+            border-radius: 6px;
+            margin-top: 6px;
+        }
+
+        /* Action recommendation box */
+        .action-box {
+            background-color: rgba(52, 152, 219, 0.18);
+            border-left: 4px solid #3498DB;
+            padding: 6px 10px;
+            border-radius: 6px;
+            margin-top: 6px;
+            color: #EAF2F8;
+            font-weight:500;
+        }
+
+        /* Background color by status */
+        div[data-testid="stVerticalBlockBorderWrapper"]:has(p:contains("Pending")) {
+            background-color: #FFFFFF !important;
+        }
+
+        div[data-testid="stVerticalBlockBorderWrapper"]:has(p:contains("Resolved")) {
+            background-color: #E8F8F5 !important;
+        }
+
+        div[data-testid="stVerticalBlockBorderWrapper"]:has(p:contains("Junk")) {
+            background-color: #FDEDEC !important;
+        }
+
+        /* Button styling */
+        .stButton>button {
+            border-radius: 6px;
+            padding: 0.3rem 0.8rem;
+            font-size: 13px !important;
+        }
+
+        /* Subheading styling */
+        .subheading {
+            font-size: 18px;
+            color: #a5b4fc;
+            text-align: left;
+            margin-top: -10px;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
     </style>
 """, unsafe_allow_html=True)
 
 
-# =====================================================
-# 📝 Report Complaint
-# =====================================================
+
+# 📝 Report Complaint Tab
+
 def report_complaint_tab():
-    st.subheader("📢 Report a Civic Complaint")
-    st.markdown("Submit your civic concerns quickly and transparently 👇")
+    st.header("📢 Report a Civic Complaint")
+    st.markdown("Submit your civic concerns quickly and transparently below 👇")
 
-    col1, col2 = st.columns(2)
-    with col1:
-        name = st.text_input("👤 Your Name")
-    with col2:
-        location = st.text_input("🏢 Block of Residence")
+    with st.container():
+        col1, col2 = st.columns(2)
+        with col1:
+            name = st.text_input("👤 Your Name")
+        with col2:
+            location = st.text_input("🏢 Block of Residence")
 
-    complaint_text = st.text_area("📝 Describe your complaint in detail")
+        complaint_text = st.text_area("📝 Describe your complaint in detail")
 
-    user_data = {
-        "resident_name": name,
-        "block": location,
-        "description": complaint_text
-    }
+        user_data = {
+            "resident_name": name,
+            "block": location,
+            "description": complaint_text
+        }
 
-    if st.button("🚀 Submit Complaint"):
-        if name and location and complaint_text:
-            with st.spinner("Processing your complaint..."):
-                try:
-                    processed_complaint = agents.analyze_complaint(user_data)
-                    create_complaint(processed_complaint)
-                    st.success("✅ Complaint submitted successfully!")
-                except Exception as e:
-                    st.error(f"⚠️ Error: {str(e)}")
-        else:
-            st.warning("⚠️ Please fill all required fields before submitting.")
+        if st.button("🚀 Submit Complaint"):
+            if name and location and complaint_text:
+                with st.spinner("Processing your complaint..."):
+                    try:
+                        processed_complaint = agents.analyze_complaint(user_data)
+                        create_complaint(processed_complaint)
+                        st.success("✅ Complaint submitted successfully!")
+                    except Exception as e:
+                        st.error(f"⚠️ Error processing complaint: {str(e)}")
+            else:
+                st.warning("⚠️ Please fill in all required fields.")
 
 
-# =====================================================
+
 # 🗂️ Cards Dashboard
-# =====================================================
+
 def cards_dashboard_tab():
-    st.subheader("🗂️ Complaint Status Dashboard")
-    st.markdown("Manage and monitor civic complaints by their current status 🔍")
+    st.header("📊 Complaint Status Dashboard")
+    st.markdown("Manage all complaints from one place ⚡")
 
-    tab1, tab2, tab3 = st.tabs(["📋 Pending", "✅ Resolved", "🚮 Junk"])
+    if "refresh_dashboard" not in st.session_state:
+        st.session_state.refresh_dashboard = False
 
-    # Pending Complaints
-    with tab1:
-        pending = get_complaints_by_status("open")
-        if not pending:
-            st.info("🎉 No pending complaints right now.")
-        else:
-            for c in pending:
-                st.markdown(f"""
-                <div class='complaint-card'>
-                    <h4>🧑 {c['resident_name']} (Block: {c['block']})</h4>
-                    <p><b>Description:</b> {c['description']}</p>
-                    <p><b>Category:</b> {c['category']} | <b>Severity:</b> {c['severity_level']}</p>
-                </div>
-                """, unsafe_allow_html=True)
+    pending = sorted(get_complaints_by_status("open"), key=lambda c: c.get("updated_at", datetime.now(timezone.utc)), reverse=True)
+    resolved = sorted(get_complaints_by_status("closed"), key=lambda c: c.get("resolved_at", datetime.now(timezone.utc)), reverse=True)
+    junk = sorted(get_complaints_by_status("junk"), key=lambda c: c.get("updated_at", datetime.now(timezone.utc)), reverse=True)
 
-                action = st.selectbox("Change status:", ["-- Select Action --", "✅ Mark as Resolved", "🚮 Move to Junk"], key=str(c["_id"]))
-                if action == "✅ Mark as Resolved":
-                    update_complaint_status(str(c["_id"]), "closed")
-                    st.success("✅ Complaint marked as Resolved!")
-                    st.rerun()
-                elif action == "🚮 Move to Junk":
-                    update_complaint_status(str(c["_id"]), "junk")
-                    st.warning("🚮 Complaint moved to Junk!")
-                    st.rerun()
+    def display_status_label(status):
+        return {"open": "Pending", "closed": "Resolved", "junk": "Junk"}.get(status, "Unknown")
 
-    # Resolved Complaints (sorted newest first)
-    with tab2:
-        resolved = get_complaints_by_status("closed")
-        if not resolved:
-            st.info("No resolved complaints yet.")
-        else:
-            # Sort newest first using updated_at or _id timestamp
-            resolved_sorted = sorted(
-                resolved,
-                key=lambda c: c.get("updated_at", str(c["_id"])),
-                reverse=True
-            )
+    col1, col2, col3 = st.columns(3)
 
-            for c in resolved_sorted:
-                st.markdown(f"""
-                <div class='complaint-card'>
-                    <h4>✅ {c['resident_name']} (Block: {c['block']})</h4>
-                    <p><b>Description:</b> {c['description']}</p>
-                    <p><b>Resolved At:</b> {c.get('resolved_at', 'N/A')}</p>
-                </div>
-                """, unsafe_allow_html=True)
+    # Pending 
+    with col1:
+        st.markdown("<div class='kanban-header'>📋 Pending</div>", unsafe_allow_html=True)
+        for c in pending:
+            with st.container(border=True):
+                st.markdown(f"<h4>🧑 {c['resident_name']} (Block: {c['block']})</h4>", unsafe_allow_html=True)
+                st.markdown(f"<p><b>Complaints:</b> {c['description']}</p>", unsafe_allow_html=True)
+                summary_text = c.get("summary") or c.get("llm_summary") or "Summary not available."
+                st.markdown(f"<div class='summary-box'><b>🧾 Complaint Summary:</b> {summary_text}</div>", unsafe_allow_html=True)
+                action_text = c.get("action_recommendation", "No action recommendation available.")
+                st.markdown(f"<div class='action-box'><b>🛠 Recommended Action:</b> {action_text}</div>", unsafe_allow_html=True)
+                st.markdown(f"<p><b>Category:</b> {c['category']} | <b>Severity:</b> {c['severity_level']}</p>", unsafe_allow_html=True)
+                st.markdown(f"<p><b>Status:</b> {display_status_label(c['status'])}</p>", unsafe_allow_html=True)
+                st.markdown(f"<small><i>Last Updated: {c.get('updated_at', datetime.now(timezone.utc)).strftime('%Y-%m-%d %H:%M:%S')}</i></small>", unsafe_allow_html=True)
 
-    # Junk Complaints (sorted newest first)
-    with tab3:
-        junk = get_complaints_by_status("junk")
-        if not junk:
-            st.info("No junk complaints found.")
-        else:
-            # Sort newest first using updated_at or _id timestamp
-            junk_sorted = sorted(
-                junk,
-                key=lambda c: c.get("updated_at", str(c["_id"])),
-                reverse=True
-            )
+                b1, b2 = st.columns(2)
+                with b1:
+                    if st.button("✅ Move to Resolve", key=f"res_{c['_id']}", use_container_width=True):
+                        update_complaint_status(str(c["_id"]), "closed", {"resolved_at": datetime.now(timezone.utc), "updated_at": datetime.now(timezone.utc)})
+                        st.session_state.refresh_dashboard = True
+                with b2:
+                    if st.button("🚮 Move to Junk", key=f"jnk_{c['_id']}", use_container_width=True):
+                        update_complaint_status(str(c["_id"]), "junk", {"updated_at": datetime.now(timezone.utc)})
+                        st.session_state.refresh_dashboard = True
+            st.markdown("")
 
-            for c in junk_sorted:
-                st.markdown(f"""
-                <div class='complaint-card'>
-                    <h4>🚮 {c['resident_name']} (Block: {c['block']})</h4>
-                    <p><b>Description:</b> {c['description']}</p>
-                </div>
-                """, unsafe_allow_html=True)
+    # --- Resolved ---
+    with col2:
+        st.markdown("<div class='kanban-header'>✅ Resolved</div>", unsafe_allow_html=True)
+        for c in resolved:
+            with st.container(border=True):
+                st.markdown(f"<h4>🧑 {c['resident_name']} (Block: {c['block']})</h4>", unsafe_allow_html=True)
+                st.markdown(f"<p><b>Complaints:</b> {c['description']}</p>", unsafe_allow_html=True)
+                summary_text = c.get("summary") or c.get("llm_summary") or "Summary not available."
+                st.markdown(f"<div class='summary-box'><b>🧾 Complaint Summary:</b> {summary_text}</div>", unsafe_allow_html=True)
+                action_text = c.get("action_recommendation", "No action recommendation available.")
+                st.markdown(f"<div class='action-box'><b>🛠 Recommended Action:</b> {action_text}</div>", unsafe_allow_html=True)
+                st.markdown(f"<p><b>Category:</b> {c['category']} | <b>Severity:</b> {c['severity_level']}</p>", unsafe_allow_html=True)
+                st.markdown(f"<p><b>Status:</b> {display_status_label(c['status'])}</p>", unsafe_allow_html=True)
+                st.markdown(f"<small><i>Last Updated: {c.get('resolved_at', datetime.now(timezone.utc)).strftime('%Y-%m-%d %H:%M:%S')}</i></small>", unsafe_allow_html=True)
+
+                b1, b2 = st.columns(2)
+                with b1:
+                    if st.button("↩️ Move to Pending", key=f"pend_{c['_id']}", use_container_width=True):
+                        update_complaint_status(str(c["_id"]), "open", {"updated_at": datetime.now(timezone.utc)})
+                        st.session_state.refresh_dashboard = True
+                with b2:
+                    if st.button("🚮 Move to Junk", key=f"jnk_r_{c['_id']}", use_container_width=True):
+                        update_complaint_status(str(c["_id"]), "junk", {"updated_at": datetime.now(timezone.utc)})
+                        st.session_state.refresh_dashboard = True
+            st.markdown("")
+
+    # --- Junk ---
+    with col3:
+        st.markdown("<div class='kanban-header'>🚮 Junk</div>", unsafe_allow_html=True)
+        for c in junk:
+            with st.container(border=True):
+                st.markdown(f"<h4>🧑 {c['resident_name']} (Block: {c['block']})</h4>", unsafe_allow_html=True)
+                st.markdown(f"<p><b>Complaints:</b> {c['description']}</p>", unsafe_allow_html=True)
+                summary_text = c.get("summary") or c.get("llm_summary") or "Summary not available."
+                st.markdown(f"<div class='summary-box'><b>🧾 Complaint Summary:</b> {summary_text}</div>", unsafe_allow_html=True)
+                action_text = c.get("action_recommendation", "No action recommendation available.")
+                st.markdown(f"<div class='action-box'><b>🛠 Recommended Action:</b> {action_text}</div>", unsafe_allow_html=True)
+                st.markdown(f"<p><b>Category:</b> {c['category']} | <b>Severity:</b> {c['severity_level']}</p>", unsafe_allow_html=True)
+                st.markdown(f"<p><b>Status:</b> {display_status_label(c['status'])}</p>", unsafe_allow_html=True)
+                st.markdown(f"<small><i>Last Updated: {c.get('updated_at', datetime.now(timezone.utc)).strftime('%Y-%m-%d %H:%M:%S')}</i></small>", unsafe_allow_html=True)
+
+                b1, b2 = st.columns(2)
+                with b1:
+                    if st.button("↩️ Move to Pending", key=f"pend_j_{c['_id']}", use_container_width=True):
+                        update_complaint_status(str(c["_id"]), "open", {"updated_at": datetime.now(timezone.utc)})
+                        st.session_state.refresh_dashboard = True
+                with b2:
+                    if st.button("✅ Move to Resolve", key=f"res_j_{c['_id']}", use_container_width=True):
+                        update_complaint_status(str(c["_id"]), "closed", {"resolved_at": datetime.now(timezone.utc), "updated_at": datetime.now(timezone.utc)})
+                        st.session_state.refresh_dashboard = True
+            st.markdown("")
+
+    if st.session_state.refresh_dashboard:
+        with st.spinner("Updating complaint status...."):
+            time.sleep(0.3)
+        st.session_state.refresh_dashboard = False
+        st.toast("Complaint status updated successfully!", icon="🟢")
+        st.rerun()
 
 
 # =====================================================
-# 📊 Analytics
+# 📊 Admin Analytics Tab
 # =====================================================
 def admin_analytics_tab():
-    st.subheader("📊 Admin Analytics Dashboard")
-    st.markdown("Get AI-generated summaries of block-level complaints 📈")
+    st.header("📊 Admin Analytics Dashboard")
+    st.markdown("Gain actionable insights across all civic complaint data 📈")
 
     if st.button("📈 Generate Summaries"):
-        with st.spinner("Analyzing complaint data..."):
-            try:
-                summaries = agents.summarize_block_issues()
-                for s in summaries:
-                    st.markdown(f"""
-                    <div class='complaint-card'>
-                        <h4>🏢 Block {s['block']}</h4>
-                        <p>{s['summary']}</p>
-                    </div>
-                    """, unsafe_allow_html=True)
-            except Exception as e:
-                st.error(f"Error: {str(e)}")
+        with st.spinner("Analyzing complaints across all blocks..."):
+            summaries = agents.summarize_block_issues()
+            if not summaries:
+                st.warning("No data found.")
+                return
+            for s in summaries:
+                with st.container(border=True):
+                    st.markdown(f"<h4>🏢 Block {s['block']}</h4>", unsafe_allow_html=True)
+                    st.markdown(s['summary'])
     else:
-        st.info("Click 'Generate Summaries' to view block summaries.")
+        st.info("🧠 Click **'Generate Summaries'** to view summarized block issues.")
 
 
 # =====================================================
-# 💬 Chat Assistant
+# 🤖 Chat Assistant Tab
 # =====================================================
 def chat_tab():
-    st.subheader("💬 CivicPulse Chat Assistant")
-    st.markdown("Ask questions about civic issues or complaint patterns 🧠")
+    st.header("🤖 CivicPulse Chat Assistant")
+    st.markdown("Ask questions about civic issues or complaint statistics 💬")
 
-    query = st.text_area("Type your question here:")
-    if st.button("Ask"):
+    query = st.text_area("💬 Enter your question here:")
+    if st.button("Send Query"):
         if not query.strip():
-            st.warning("Please enter a valid question.")
+            st.warning("⚠️ Please enter a valid question.")
             return
         with st.spinner("🤔 Thinking..."):
-            try:
-                response = chat.chatbot(query)
-                st.markdown(f"<div class='ai-response'><b>💡 AI Response:</b><br>{response}</div>", unsafe_allow_html=True)
-            except Exception as e:
-                st.error(f"Error: {str(e)}")
+            response = chat.chatbot(query)
+            with st.container(border=True):
+                st.markdown("#### 💡 AI Response:")
+                st.markdown(response)
 
 
 # =====================================================
-# 🚀 Main App
+# 🚀 Main Entry Point
 # =====================================================
 def main():
-    st.title("CivicPulse - Citizen Complaint Portal")
-    st.markdown("<p class='subheading'>The AI-powered platform for smarter community complaint management and analysis</p>", unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.title("🏙️ CivicPulse - Citizen Complaint Portal")
+    st.markdown("<div class='subheading'>The AI-powered platform for smarter community complaint management and analysis.</div>", unsafe_allow_html=True)
 
     tab1, tab2, tab3, tab4 = st.tabs([
         "📝 Report Complaint",
