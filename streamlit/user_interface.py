@@ -1,4 +1,5 @@
 import sys
+import json
 import time
 from pathlib import Path
 from datetime import datetime, timezone
@@ -15,6 +16,7 @@ from mongodb.handlers import (
     get_complaints_by_status,
     update_complaint_status
 )
+from mongodb.clustering_pipeline import run_clustering_pipeline
 
 
 st.set_page_config(page_title="CivicPulse Dashboard", layout="wide")
@@ -306,6 +308,56 @@ def admin_analytics_tab():
                     st.markdown(s['summary'])
     else:
         st.info("🧠 Click **'Generate Summaries'** to view summarized block issues.")
+
+    st.markdown("---")
+    
+    json_path = Path(project_root) / "mongodb" / "clusters.json"
+
+    col1, col2 = st.columns([4, 1])
+    
+    with col1:
+        st.markdown("### 🧭 Major Community Issues")
+        st.write("Below are the identified themes from the complaints.")
+
+    with col2:
+        st.write("") 
+        if st.button("Update Themes"):
+            with st.spinner("Analyzing complaints to identify new themes... This process may take a few minutes."):
+                try:
+                    run_clustering_pipeline()
+                    st.success("Themes updated successfully!")
+                    st.rerun()
+                except Exception as e:
+                    st.error(f"Error updating themes: {str(e)}")
+
+    if json_path.exists():
+        try:
+            with open(json_path, "r") as f:
+                clusters = json.load(f)
+            
+            if not clusters:
+                st.warning("No clusters found in the file.")
+            else:
+                for cluster in clusters:
+                    with st.container():
+                        st.markdown(
+                            f"""
+                            <div style="
+                                border: 1px solid #ccc;
+                                border-radius: 10px;
+                                padding: 15px;
+                                margin-bottom: 10px;
+                                background-color: #f9f9f9;">
+                                <h4 style='margin-bottom: 5px; color: #2C3E50;'>{cluster['cluster_name']} <span style='font-size: 0.8em; color: #7f8c8d;'>({cluster['count']} complaints)</span></h4>
+                                <p style='color: #34495E; margin-top: 0;'>{cluster['cluster_summary']}</p>
+                            </div>
+                            """,
+                            unsafe_allow_html=True
+                        )
+        except Exception as e:
+            st.error(f"Error reading clusters file: {str(e)}")
+    else:
+        st.warning("Clusters file not found. Please click 'Update Themes' to generate.")
 
 def chat_tab():
     st.header("🤖 CivicPulse Chat Assistant")
