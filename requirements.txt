@@ -1,4 +1,7 @@
 pymongo
-dotenv
+python-dotenv
 google-genai
 streamlit
+numpy
+scikit-learn
+umap-learn

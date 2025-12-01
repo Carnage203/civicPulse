@@ -1,0 +1,341 @@
+[
+    {
+        "cluster_id": 0,
+        "cluster_name": "Erratic Water Supply and Low Pressure",
+        "cluster_summary": "Customers are reporting widespread issues of erratic water supply, including persistently low pressure, intermittent flow, and complete cut-offs. These recurring problems frequently occur during peak hours or mornings, significantly disrupting daily routines without prior notice.",
+        "count": 17,
+        "complaints": [
+            "The tap water in our block has been discolored and has a strange smell for the past three days. It's unfit for consumption.",
+            "The main water pump in A3 is making unusual loud noises. It might indicate a fault.",
+            "The water pressure in our area, specifically on the third floor and above, is consistently very low.",
+            "For the past three days, the water supply to our block has been erratic with very low pressure, making daily chores difficult. This is a recurring issue.",
+            "The water supply in block A1 has been intermittent for the past week, often cutting off for several hours in the morning. This is causing significant inconvenience for daily routines.",
+            "The water supply in our block has been erratic for the past week, with very low pressure during morning hours. It's making daily chores very difficult.",
+            "The pressure of the water supply in the mornings in A4 has been consistently low for a month now. It's barely a trickle.",
+            "We haven't had proper water pressure for the last three days. Today, the water supply stopped completely for over 6 hours in the morning.",
+            "The water supply in our block has been erratic for the past three days, with very low pressure during peak hours. It's making daily chores extremely difficult.",
+            "There's a consistent low water pressure issue in our apartment during morning hours, making it hard to use showers and perform daily tasks.",
+            "Water supply is completely cut off for several hours every afternoon in Block A4 without any prior notice.",
+            "The water supply in Block A2 has been experiencing very low pressure during morning hours, making it difficult to fill water tanks.",
+            "The water meter for my apartment in Block A3 seems to be faulty, showing unusually high readings.",
+            "Water supply is erratic in our block, often stopping without prior notice. This has been a recurring issue for the past week, making daily chores difficult.",
+            "Water pressure in the taps has significantly reduced in Block B1 over the last few days. This makes simple tasks like showering difficult.",
+            "Water supply has been inconsistent for the past three days, with very low pressure during morning hours. This is making daily chores very difficult for all residents.",
+            "The water purifier in the community center of Block B1 has been out of order for a week. Residents are finding it difficult to access clean drinking water."
+        ]
+    },
+    {
+        "cluster_id": 1,
+        "cluster_name": "Park and Waste Management Failures",
+        "cluster_summary": "Customers are reporting widespread issues of poorly maintained public spaces, including overgrown vegetation and broken infrastructure. Irregular garbage collection is causing overflowing bins, foul odors, pest attraction, and unhygienic conditions across various community areas.",
+        "count": 35,
+        "complaints": [
+            "There's a persistent foul odor near the community park due to uncollected garbage. This is attracting pests.",
+            "The park benches are broken and need repair. Also, the playground equipment is rusty.",
+            "The municipal park needs better maintenance; the grass is overgrown, and there are many dry leaves.",
+            "The garbage bins near the community park in B3 are overflowing, and waste hasn't been collected for four days. It's attracting stray animals and emitting a foul odor.",
+            "The park in Block A3 is poorly maintained; the grass is overgrown, and the walking path is covered with litter. It needs proper cleaning and landscaping.",
+            "The playground equipment, specifically the slide, in the A4 park is broken and rusty, making it unsafe for children to use. It needs urgent repair or replacement.",
+            "The park area near block B3 is covered with litter, and the bins are overflowing. It smells bad and attracts pests, making it unusable for children.",
+            "Garbage has not been collected from our area for three days now. The bins are overflowing, and stray animals are scattering the waste.",
+            "The garbage bins near the community hall in A4 are often overflowing due to irregular collection. This attracts rodents and causes unhygienic conditions.",
+            "The playground equipment in the A3 park is rusty and broken, posing a safety risk to children. Some swings are completely unusable.",
+            "There's a significant amount of litter and uncollected garbage near the main park entrance in B1. It's attracting pests and smells bad.",
+            "The community park in B2 is not being cleaned regularly; there's a lot of dry leaves and debris. Could this be addressed soon?",
+            "The public benches in the park of A2 are broken and need repairs. They are currently unusable and look unsightly.",
+            "The park benches near the senior citizen's corner in A3 are broken and need urgent repair. This prevents seniors from resting comfortably.",
+            "Garbage is not being collected regularly from our floor. Bins are overflowing, attracting pests.",
+            "The common area garden is poorly maintained, with overgrown weeds and broken benches. It looks neglected.",
+            "The local waste collection point near my house is often left overflowing, attracting stray animals and creating an unhygienic environment.",
+            "The children's playground equipment is rusty and some swings are broken. It's unsafe for kids to play.",
+            "There is a significant accumulation of garbage near the park entrance, attracting stray animals and creating an unhygienic environment. The bins are overflowing.",
+            "The playground equipment is broken and poses a danger to children. Specifically, the swings are damaged and need urgent repair or replacement.",
+            "The community garden in Block A3 is unkempt, with overgrown weeds and broken benches. It requires urgent maintenance to be usable again.",
+            "The designated recycling bins for paper and plastic are always mixed up or overflowing, making proper waste segregation impossible for residents.",
+            "Garbage is piling up near the community bins in B3, not being collected regularly. This is attracting pests and creating a foul smell.",
+            "The park area in Block A4 is unkempt, with overgrown grass and scattered litter, making it unusable for children and families.",
+            "The garbage chute in our building B4 is frequently jammed, causing refuse to back up and creating unsanitary conditions.",
+            "The park benches in Block B3 are broken and in disrepair, making it difficult for residents to sit and enjoy the park.",
+            "There is a persistent issue with garbage accumulation near the community park in Block B3, leading to foul smells and unhygienic conditions.",
+            "The playground equipment in Block A3 park is broken and rusty, making it unsafe for children to use.",
+            "The communal garden area in Block B2 is overgrown with weeds and requires urgent landscaping and maintenance.",
+            "Garbage bins are overflowing near the community center in Block B1, attracting stray animals and creating an unhygienic environment. Collection hasn't happened in days.",
+            "The public park in Block B3 is poorly maintained, with overgrown grass and broken play equipment. It's becoming unusable for children.",
+            "The local park in Block A1 has become a hangout spot for unruly groups late at night, leading to excessive noise and litter. This impacts the peaceful environment.",
+            "Garbage collection has been irregular, and waste bins near the park are overflowing. This is attracting stray animals and creating unhygienic conditions.",
+            "The public park in Block A1 is not cleaned regularly, and there's litter scattered around. This makes it unpleasant for children to play.",
+            "untrimmed tall grasses in the colony garden"
+        ]
+    },
+    {
+        "cluster_id": 2,
+        "cluster_name": "Faulty Streetlights & Safety Concerns",
+        "cluster_summary": "Customers are reporting widespread issues of non-functional, dim, or flickering streetlights across numerous blocks and areas. These widespread malfunctions are creating dark, unsafe conditions for pedestrians and drivers, often persisting for extended periods.",
+        "count": 20,
+        "complaints": [
+            "Several streetlights on the main road of A3 are not working after sunset, making it difficult for pedestrians.",
+            "Streetlights on the walking path near the lake are not functioning, making evening walks unsafe.",
+            "Several streetlights on the main road of A2 are not working, making the area very dark and unsafe for pedestrians after sunset. This has been an issue for over a week.",
+            "The streetlights at the intersection of A3 and A4 are flickering constantly, which is distracting for drivers and doesn't provide consistent illumination. It's an ongoing issue for days.",
+            "The streetlights on the lane behind block A3 have not been working for over a week, making the area very dark and unsafe at night.",
+            "Many streetlights near the outer perimeter of B2 are non-functional, creating dark spots that feel unsafe, particularly for evening walkers.",
+            "A few streetlights on the main road of A4 are not working at all, making it very dark and unsafe at night. This has been an issue for several days.",
+            "The streetlights near the B3 market area are flickering intermittently, making it difficult to see at night. This issue has persisted for days.",
+            "The street light near the children's park in block A2 has been non-functional for a week. This creates a safety concern at night.",
+            "Many street lights in block B4 are very dim and provide insufficient illumination, making walking difficult after dark.",
+            "The streetlights on the main road outside Block A4 have not been working for over a week, making it unsafe to walk after dark. This is a recurring issue.",
+            "The street lights near Block A1's main entrance have not been working for the past week. It's very dark and feels unsafe at night.",
+            "Several street lights on the inner lanes of Block A3 are burnt out, plunging parts of the area into darkness at night.",
+            "The streetlights on the main road near Block A1 have not been working for the past week, making it very dark and unsafe at night.",
+            "Streetlights in the lane behind Block A2 are flickering constantly, which is annoying and inefficient.",
+            "The streetlights near the park are not working, making it unsafe to walk after dark. This issue has persisted for several nights.",
+            "Several streetlights on the back road of Block B3 are flickering or completely off. This makes the area very dark and prone to accidents.",
+            "The street lights on the main road in front of Block B3 have not been working for over a week. It's very dark and unsafe for pedestrians at night.",
+            "Some street lights in the internal lanes of Block B3 flicker constantly, causing inconvenience and sometimes failing completely. This happens every evening.",
+            "Street light at the park is flickering occasionally, but area remains sufficiently lit and poses no immediate safety risk."
+        ]
+    },
+    {
+        "cluster_id": 3,
+        "cluster_name": "Road and Pavement Hazards",
+        "cluster_summary": "Customers are reporting widespread issues of deteriorating road and pavement conditions throughout various blocks, including numerous potholes, deep cracks, and uneven surfaces. These significant infrastructure damages create serious safety hazards for drivers, pedestrians, and two-wheelers, often exacerbated by poor maintenance or recurring problems.",
+        "count": 23,
+        "complaints": [
+            "The road in front of building 5 in B1 has developed large potholes, which are a hazard for vehicles and two-wheelers.",
+            "Potholes have reappeared on the newly repaired road section near the main gate of B1.",
+            "There is a large and dangerous pothole near the entrance of B1, which poses a serious risk to vehicles and pedestrians. It needs immediate repair to prevent accidents.",
+            "The pavement outside shops in A1 is uneven and broken in several places, making it difficult for senior citizens and children to walk safely. It's a tripping hazard.",
+            "The main drain cover near the Block B1 entrance is broken, leaving an open trench which is extremely dangerous for pedestrians and vehicles, especially at night.",
+            "There are several large potholes on the main road leading to block B1, making driving hazardous. They need urgent repair to prevent accidents.",
+            "The pavement outside B3 is severely damaged with broken slabs, posing a tripping hazard for pedestrians, especially the elderly.",
+            "The main road passing through B3 has developed deep cracks in several places. It feels bumpy and could worsen if not addressed before monsoon.",
+            "The road near the community center in A1 has developed several large potholes, posing a risk to vehicles and pedestrians. Repairs are urgently needed.",
+            "Potholes are reappearing on the internal roads of B2 despite recent repairs. The quality of previous repair work seems to be poor.",
+            "A large pothole has developed near the main gate of block B1, making it dangerous for two-wheelers and pedestrians.",
+            "The main entry road to Block B4 has developed several deep cracks and is becoming hazardous for vehicles.",
+            "Potholes on the road leading to Block A3 have worsened significantly after the recent rains, making driving difficult and hazardous for two-wheelers.",
+            "The main road connecting B1 to the market has several large potholes, which are a hazard to vehicles and pedestrians.",
+            "Speeding vehicles are a common sight on the road passing through Block B1, especially near the children's play area, posing a serious risk.",
+            "The walking path behind Block A1 is muddy and uneven due to poor maintenance, making it difficult for residents to use, especially seniors.",
+            "A significant pothole has appeared on the road leading to Block A4, posing a risk to vehicles and pedestrians.",
+            "The pavement outside Block B2 is uneven and cracked in several places, making it hazardous for walking.",
+            "Potholes on the main road leading to Block A3 are causing significant inconvenience and potential hazards for vehicles. They seem to be growing larger after recent rains.",
+            "The pavement near the school in Block B4 has broken tiles and uneven surfaces, posing a tripping hazard for children and elderly. It needs urgent repair.",
+            "There is a large pothole on the road near the entrance of Block B1, which is dangerous for two-wheelers. It has caused minor accidents already.",
+            "Speeding vehicles are a common sight on the road passing through Block A4, especially near the children's play area. This poses a serious risk to kids.",
+            "The pavement along the main road in Block A1 is uneven and broken in several places, making it difficult and unsafe for elderly residents to walk."
+        ]
+    },
+    {
+        "cluster_id": 4,
+        "cluster_name": "Disruptive Noise Complaints",
+        "cluster_summary": "Customers are reporting widespread issues of loud and persistent noise from various sources like music, construction, and pets. This excessive noise occurs frequently at inappropriate times, disturbing their sleep and overall peace.",
+        "count": 13,
+        "complaints": [
+            "Loud music from a nearby banquet hall is causing significant noise pollution late into the night. It's disturbing residents.",
+            "Construction work on the adjacent plot to B2 continues late into the night, causing excessive noise pollution and disturbing the peace of residents, especially during sleeping hours.",
+            "Loud construction work is happening late into the night, sometimes past midnight. The constant noise is disturbing sleep and peace.",
+            "Loud music is played by a resident in A1 late at night almost daily. It's difficult to sleep with the continuous noise.",
+            "There's constant loud music coming from the neighboring building in B3 late into the night, disturbing residents' sleep. This has been happening every weekend.",
+            "Construction work in the adjacent plot is causing excessive noise pollution, especially during afternoon hours, disrupting residents.",
+            "A neighbor's pet dog is constantly barking late at night, disturbing our sleep. Efforts to talk to the owner have not been successful.",
+            "Loud music from a neighboring apartment in Block B2 is consistently played late into the night, disturbing residents' sleep and peace. This occurs almost every weekend.",
+            "Excessive noise from construction work nearby starts very early in the morning, disturbing residents' sleep and peace.",
+            "Loud music is being played late into the night from a neighboring house in Block A1, causing significant disturbance.",
+            "Loud music is being played late into the night from a residence in Block A4, causing disturbance to neighbors. This happens almost every weekend.",
+            "Loud music is being played from a residence in Block A3 late into the night, disturbing sleep for several families. This has been happening consistently for the past few nights.",
+            "Construction noise from the adjacent plot in Block B2 starts very early in the morning, often before 7 AM, disturbing residents' peace. This happens daily."
+        ]
+    },
+    {
+        "cluster_id": 5,
+        "cluster_name": "Blocked Drains and Water Stagnation",
+        "cluster_summary": "Customers are reporting widespread issues of blocked, clogged, and overflowing drainage systems causing water accumulation, waterlogging, and stagnation across various blocks. These issues frequently lead to foul smells, unhygienic conditions, and increased mosquito breeding.",
+        "count": 18,
+        "complaints": [
+            "The drainage system near the market area in A4 is blocked, leading to water accumulation after light rain.",
+            "The drainage system is overflowing in front of building 10 after heavy rains, causing inconvenience.",
+            "The drainage system in front of house number 12 in Block B4 is completely clogged, leading to stagnant water accumulation and a strong foul smell, especially after rain.",
+            "The main drain near the entrance of block B2 is completely clogged, causing water to accumulate on the road after even light rain.",
+            "Frequent water logging occurs near the B2-A2 intersection even after minor rainfall due to poor drainage. This creates traffic jams and unhygienic conditions.",
+            "The drainage system near the main gate of B4 is clogged, leading to water stagnation after every rainfall. This is becoming a breeding ground for mosquitoes.",
+            "During heavy rains, the storm drains in B1 overflow, causing minor flooding on the streets. This has been a recurring issue for a few years.",
+            "The main drain outside my house in A1 is completely clogged. Water is overflowing onto the street during rainfall, causing stagnation.",
+            "The drainage system near the main gate of Block A1 is choked, causing waterlogging during even moderate rainfall. This leads to foul smells and mosquito breeding.",
+            "The main drainage system near Block B2 is clogged, causing water to accumulate on the road during light rain, posing a hygiene risk.",
+            "There is a persistent foul smell emanating from the open drain near the children's park in B2, which is unhygienic and unpleasant.",
+            "There's a constant bad odor originating from the open drain near Block B4, indicating a blockage or overflow.",
+            "The drainage system near the main entrance of Block B4 is clogged, leading to water stagnation after every rain. This is causing a foul smell and mosquito breeding.",
+            "There's a persistent foul smell near the common garbage collection point in Block A2 even after collection. It suggests a drainage issue or residual waste.",
+            "Drainage system near the market area in Block B4 is choked, leading to water accumulation after light rain. This is a breeding ground for mosquitoes.",
+            "There is a persistent foul smell near the back entrance of Block A2, likely due to an uncleaned drain or accumulated waste. This has been ongoing for days.",
+            "The storm drains in Block A3 are filled with debris and plastic waste, which could lead to severe waterlogging during the upcoming monsoon season. Pre-monsoon cleaning is vital.",
+            "Mosquito breeding grounds due to stagnant water; near the swimming pool"
+        ]
+    },
+    {
+        "cluster_id": 6,
+        "cluster_name": "Frequent Power & Voltage Issues",
+        "cluster_summary": "Customers are reporting widespread issues of frequent and prolonged power outages occurring daily, often during peak hours and without notice, disrupting work, studies, and daily activities. Many also experience recurring voltage fluctuations that damage appliances and affect performance.",
+        "count": 16,
+        "complaints": [
+            "Frequent power cuts, especially during peak hours, are disrupting daily activities and work-from-home schedules.",
+            "Frequent power outages are occurring in A4, sometimes lasting for hours, especially during peak evening times. This is disrupting work and daily life.",
+            "Voltage fluctuations are a constant problem in B3, causing damage to household appliances. This needs to be addressed by the electricity department promptly.",
+            "Frequent power outages are occurring every day, lasting for at least 2-3 hours. This is impacting work-from-home schedules and appliance usage.",
+            "Voltage fluctuations are very common in A2, leading to frequent appliance damage. This is a recurring problem that needs a permanent solution.",
+            "Frequent power outages in A3 block, especially during peak hours, are disrupting work and daily activities. The duration of outages is also increasing.",
+            "The electricity meter box outside my house in A3 is sparking occasionally, which seems very dangerous. Could someone check this urgently?",
+            "There are very frequent and unannounced power cuts in our block. This is causing inconvenience, especially at night.",
+            "There's a significant drop in voltage during evening hours, which affects appliance performance and makes lighting dim.",
+            "Frequent power cuts are occurring daily, lasting for several hours at a time, especially in the evening. This is disrupting work and studies.",
+            "Frequent power cuts lasting 2-3 hours are occurring daily in Block A3 without any prior notice, disrupting work from home and studies.",
+            "Flickering lights and occasional voltage fluctuations are damaging appliances in Block A2. This needs immediate attention.",
+            "Frequent power outages are occurring in Block B1, especially late at night, disrupting sleep and work.",
+            "Frequent power cuts are occurring in Block A2, sometimes lasting for several hours. This is impacting work-from-home residents and children's studies.",
+            "There are frequent voltage fluctuations in Block A3, causing damage to home appliances. This has been happening almost daily for a couple of weeks.",
+            "Frequent power cuts are occurring in Block A4, especially during peak hours. This disrupts work and daily activities significantly."
+        ]
+    },
+    {
+        "cluster_id": 7,
+        "cluster_name": "Public Safety & Nuisance Concerns",
+        "cluster_summary": "Customers are reporting widespread issues of increasing stray dog populations that are aggressive and a nuisance, posing significant safety threats, especially to children, near public spaces. Furthermore, residents are concerned about suspicious individuals loitering after dark in these areas, exacerbating public safety worries.",
+        "count": 9,
+        "complaints": [
+            "There's an increase in stray dog population in B4, and some are aggressive, raising concerns about public safety.",
+            "There have been reports of suspicious activity near the vacant plots in A1 late at night. More patrolling is needed.",
+            "There are stray dogs roaming in large packs near the children's play area in A1, which is a safety concern for kids and residents. They can be aggressive at times.",
+            "There's a significant increase in stray dog population around A1, leading to barking at night and potential safety concerns for children.",
+            "A group of unknown individuals has been loitering near the children's play area in A1 late at night, raising concerns about public safety. Increased patrolling would be helpful.",
+            "Many stray dogs are roaming freely in Block B1, particularly aggressive at night, causing fear among children and elderly residents. Animal control needs to be contacted.",
+            "Suspicious individuals have been loitering near the playground after dark, raising concerns about public safety for children.",
+            "A stray dog menace has increased significantly in Block A4, particularly near the children's play area. They are aggressive and pose a threat.",
+            "Several stray dogs have become a nuisance and a safety concern in Block A2, often chasing pedestrians and creating a ruckus at night. Their population seems to be increasing."
+        ]
+    },
+    {
+        "cluster_id": 8,
+        "cluster_name": "Unsanitary Public Toilets",
+        "cluster_summary": "Customers are reporting widespread issues of unhygienic and poorly maintained public restrooms and washrooms across various locations. They frequently lack basic supplies and regular cleaning, rendering them practically unusable due to unsanitary conditions.",
+        "count": 5,
+        "complaints": [
+            "Public restrooms near the community center are unhygienic and lack basic amenities.",
+            "The public toilets near the A2 market are often unhygienic and lack basic supplies like soap. Improved maintenance is needed.",
+            "The common washrooms in the community center are often dirty and unhygienic due to lack of regular cleaning, making them unusable for many.",
+            "Despite repeated requests, the public restrooms near Block B1 remain unclean and poorly maintained.",
+            "The public toilets in Block B2 are extremely unhygienic and poorly maintained. They are practically unusable due to lack of cleaning."
+        ]
+    },
+    {
+        "cluster_id": 9,
+        "cluster_name": "Improper Waste Disposal & Burning",
+        "cluster_summary": "Customers are reporting widespread issues of illegal dumping of construction debris and open burning of various waste types. These practices result in environmental and air pollution, public space obstructions, and significant health concerns.",
+        "count": 7,
+        "complaints": [
+            "Residents are burning garbage in the open ground, causing air pollution and health concerns.",
+            "Some residents in A2 are openly burning garden waste, causing smoke and air pollution, which is a nuisance and health concern for others. This happens in the evenings.",
+            "Some residents are illegally dumping construction debris near the vacant plot in B1. This is an eyesore and makes the area dirty.",
+            "There's a significant amount of construction debris left on the roadside in B1 after recent work, posing a hazard to pedestrians. It needs to be cleared.",
+            "Unattended construction debris and waste are being left on the footpath near B1, obstructing pedestrian movement and creating an eyesore.",
+            "Some residents in Block B3 are burning leaves and trash in open areas, causing air pollution.",
+            "Construction debris from a nearby site is often dumped illegally on vacant plots in Block B2. This is causing environmental pollution and attracting pests."
+        ]
+    },
+    {
+        "cluster_id": 10,
+        "cluster_name": "Play Area Safety Hazards",
+        "cluster_summary": "Customers are reporting widespread issues of dangerous open manholes and exposed electrical wires near children's parks and play areas. These significant safety risks require immediate attention to prevent accidents.",
+        "count": 5,
+        "complaints": [
+            "Some electrical wires are hanging loosely from poles near the children's play area. This is very dangerous.",
+            "There's an open manhole cover near the children's park in B4, which is a serious safety risk for kids playing. It needs to be covered immediately.",
+            "There are several open manholes without covers near the children's play area. This is extremely dangerous, especially for kids.",
+            "There's an open manhole cover near the B4 park entrance, which is a serious accident waiting to happen, especially at night. It needs to be covered immediately.",
+            "There is an exposed electrical wire near the children's play area in Block B1, which is extremely dangerous."
+        ]
+    },
+    {
+        "cluster_id": 11,
+        "cluster_name": "Community Hall Facility Issues",
+        "cluster_summary": "Customers are reporting widespread issues of malfunctioning air conditioning systems in community halls, causing discomfort during events and concerns about energy waste from units left on unnecessarily. Furthermore, some community halls are also plagued with outdated and broken gym equipment, making it difficult for residents to utilize the facilities effectively.",
+        "count": 5,
+        "complaints": [
+            "The community hall's air conditioning system is not working properly, making events uncomfortable.",
+            "The community hall's air conditioning system is not working properly. It's too hot to use for events.",
+            "The gym equipment in the community hall is outdated and some machines are broken, making it difficult for residents to use the facility effectively.",
+            "The community hall's air conditioning system is not working, making it uncomfortable for events and gatherings.",
+            "The community hall in Block A3 often has its air conditioning left on unnecessarily, leading to energy waste."
+        ]
+    },
+    {
+        "cluster_id": 12,
+        "cluster_name": "Security and Facility Failures",
+        "cluster_summary": "Customers are reporting widespread issues of security failures due to absent or negligent personnel and faulty security equipment, compromising resident safety and access. Additionally, essential amenities like elevators and automatic gates are frequently malfunctioning, causing significant inconvenience.",
+        "count": 9,
+        "complaints": [
+            "The main gate of our society in A3 is often left unguarded, raising security concerns for residents, especially at night. We need consistent security personnel.",
+            "The elevator in Block A2 has been frequently breaking down over the past month, causing significant inconvenience to elderly residents.",
+            "The security camera at the entrance of Block A2 has been non-functional for some time, raising concerns about the safety and security of residents.",
+            "The automatic gate for vehicle entry in Block B3 is frequently malfunctioning, causing long queues and inconvenience during peak hours.",
+            "One of the two elevators in Block A3 has been out of service for over two weeks, causing significant delays and inconvenience, especially for elderly residents.",
+            "The security guards at Block A2 entrance are often found sleeping during their night shifts, compromising the safety of the entire residential complex.",
+            "The security guard at the A4 gate is often missing from his post, leaving the entrance unsupervised for extended periods.",
+            "The main gate of the complex in Block A1 is often left open at night, compromising security.",
+            "Security personnel at the Block B2 gate are often absent during night shifts, raising concerns about public safety. Visitors are not always checked."
+        ]
+    },
+    {
+        "cluster_id": 13,
+        "cluster_name": "Hazardous Tree Branches",
+        "cluster_summary": "Customers are reporting widespread issues of dangerously hanging, fallen, or overgrown tree branches creating safety hazards. These pose risks to pedestrians, vehicles, and infrastructure, often blocking access or posing fire risks due to proximity to power lines.",
+        "count": 6,
+        "complaints": [
+            "A tree branch near house number 7 in Block B1 is dangerously hanging over the road and could fall anytime, posing a risk to vehicles and pedestrians. It needs to be trimmed.",
+            "The trees along the sidewalk in A4 are overgrown and blocking pedestrian pathways. They also obscure some traffic signs.",
+            "A tree branch is dangerously hanging over the pedestrian pathway near the Block A1 parking lot, posing a risk of falling and injury.",
+            "A tree branch has fallen across a pathway in Block B4 after recent winds, blocking access.",
+            "An old, decaying tree branch in Block A4 looks like it might fall onto the road or power lines. This poses a significant safety risk during windy conditions.",
+            "Tree branches are overgrown and touching electricity wires near the park in Block B4, creating a potential fire hazard. This needs immediate attention."
+        ]
+    },
+    {
+        "cluster_id": 14,
+        "cluster_name": "Unclean Common Areas",
+        "cluster_summary": "Customers are reporting widespread issues of neglected common area cleanliness, particularly in stairwells, corridors, and lobbies. They frequently observe dust, cobwebs, and debris due to a lack of regular and thorough cleaning.",
+        "count": 5,
+        "complaints": [
+            "Despite repeated requests, the road outside my house in A2 remains unswept for over a week, accumulating dust and debris. This affects the overall cleanliness of the block.",
+            "The cleanliness in the common areas of A1, particularly the stairwells, has deteriorated. They are often dusty and have spiderwebs.",
+            "The common corridor on the 3rd floor is extremely dirty, full of dust and cobwebs. It hasn't been cleaned in weeks.",
+            "The common areas in our building are not cleaned regularly, leading to dusty stairwells and dirty lobbies.",
+            "The common stairwells in Block A4 are often uncleaned and smell unpleasant due to lack of regular sweeping."
+        ]
+    },
+    {
+        "cluster_id": 15,
+        "cluster_name": "Community Water Leakage Issues",
+        "cluster_summary": "Customers are reporting widespread issues of water leaks and seepage across various community areas, including basements, public washrooms, and main pipelines. These problems are causing dampness, waterlogging, water waste, and potential structural damage, requiring urgent attention.",
+        "count": 4,
+        "complaints": [
+            "There's a significant leak in the main water pipeline near the community center in B4, leading to wastage of water and waterlogging on the road. It has been leaking for two days.",
+            "There is a leaky pipe in the common area basement of B4, causing constant dampness and a mildew smell. It needs immediate attention.",
+            "Water seepage is observed from the ceiling in the parking basement below Block B1, leading to puddles and potential structural damage.",
+            "A tap in the public washroom near the Block B1 playground is constantly leaking, wasting a lot of water. It has been like this for several days now."
+        ]
+    },
+    {
+        "cluster_id": 16,
+        "cluster_name": "Illegal Parking & Obstruction",
+        "cluster_summary": "Customers are reporting widespread issues of illegal parking and public space obstruction by vehicles and street vendors. These problems impede pedestrian movement, cause traffic congestion, and occupy critical public access areas.",
+        "count": 6,
+        "complaints": [
+            "Unauthorised parking by commercial vehicles near the main road of B2 is causing traffic congestion and making it difficult for residents to exit their driveways. This happens daily.",
+            "There is a persistent problem of illegal parking on the service road outside Block B4, obstructing traffic flow and emergency vehicle access.",
+            "Illegal parking of vehicles on the footpath near Block A2 is obstructing pedestrian movement.",
+            "There's an abandoned vehicle parked illegally on the street in Block A1 for over a month. It's occupying valuable parking space and is an eyesore.",
+            "Street vendors are illegally encroaching on the pavement near the market in Block A3, making it difficult for pedestrians to walk. This is a daily occurrence during peak hours.",
+            "An abandoned vehicle has been parked near the community hall in Block A3 for over two months, taking up valuable parking space and posing a hazard."
+        ]
+    }
+]
