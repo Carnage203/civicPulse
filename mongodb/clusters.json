@@ -1,8 +1,8 @@
 [
     {
         "cluster_id": 0,
-        "cluster_name": "Erratic Water Supply and Low Pressure",
-        "cluster_summary": "Customers are reporting widespread issues of erratic water supply, including persistently low pressure, intermittent flow, and complete cut-offs. These recurring problems frequently occur during peak hours or mornings, significantly disrupting daily routines without prior notice.",
+        "cluster_name": "Inconsistent Water Supply Issues",
+        "cluster_summary": "Customers are reporting widespread issues of inconsistent water supply, including erratic flow, very low pressure, and complete cut-offs, often recurring and making daily chores difficult. These problems affect various blocks and apartments, causing significant inconvenience.",
         "count": 17,
         "complaints": [
             "The tap water in our block has been discolored and has a strange smell for the past three days. It's unfit for consumption.",
@@ -26,8 +26,8 @@
     },
     {
         "cluster_id": 1,
-        "cluster_name": "Park and Waste Management Failures",
-        "cluster_summary": "Customers are reporting widespread issues of poorly maintained public spaces, including overgrown vegetation and broken infrastructure. Irregular garbage collection is causing overflowing bins, foul odors, pest attraction, and unhygienic conditions across various community areas.",
+        "cluster_name": "Public Space Upkeep & Waste",
+        "cluster_summary": "Customers are reporting widespread issues of neglected public parks and common areas, characterized by overgrown vegetation, scattered litter, and broken amenities. Furthermore, there are frequent complaints about uncollected garbage, leading to overflowing bins, foul odors, and pest infestations.",
         "count": 35,
         "complaints": [
             "There's a persistent foul odor near the community park due to uncollected garbage. This is attracting pests.",
@@ -69,8 +69,8 @@
     },
     {
         "cluster_id": 2,
-        "cluster_name": "Faulty Streetlights & Safety Concerns",
-        "cluster_summary": "Customers are reporting widespread issues of non-functional, dim, or flickering streetlights across numerous blocks and areas. These widespread malfunctions are creating dark, unsafe conditions for pedestrians and drivers, often persisting for extended periods.",
+        "cluster_name": "Streetlight Malfunctions and Safety Concerns",
+        "cluster_summary": "Customers are reporting widespread issues of streetlights not working, flickering, or being too dim across various blocks and areas. This results in dark, unsafe conditions for pedestrians and drivers, often persisting for several days or weeks.",
         "count": 20,
         "complaints": [
             "Several streetlights on the main road of A3 are not working after sunset, making it difficult for pedestrians.",
@@ -97,8 +97,8 @@
     },
     {
         "cluster_id": 3,
-        "cluster_name": "Road and Pavement Hazards",
-        "cluster_summary": "Customers are reporting widespread issues of deteriorating road and pavement conditions throughout various blocks, including numerous potholes, deep cracks, and uneven surfaces. These significant infrastructure damages create serious safety hazards for drivers, pedestrians, and two-wheelers, often exacerbated by poor maintenance or recurring problems.",
+        "cluster_name": "Hazardous Road and Pavement Conditions",
+        "cluster_summary": "Customers are reporting widespread issues of deteriorating road and pavement conditions, including numerous potholes, deep cracks, and uneven or broken surfaces. These conditions are creating significant hazards for vehicles, two-wheelers, and pedestrians, leading to difficult navigation, tripping risks, and potential accidents.",
         "count": 23,
         "complaints": [
             "The road in front of building 5 in B1 has developed large potholes, which are a hazard for vehicles and two-wheelers.",
@@ -128,8 +128,8 @@
     },
     {
         "cluster_id": 4,
-        "cluster_name": "Disruptive Noise Complaints",
-        "cluster_summary": "Customers are reporting widespread issues of loud and persistent noise from various sources like music, construction, and pets. This excessive noise occurs frequently at inappropriate times, disturbing their sleep and overall peace.",
+        "cluster_name": "Excessive Noise Disturbances",
+        "cluster_summary": "Customers are reporting widespread issues of excessive noise pollution stemming from loud music, ongoing construction work, and persistently barking pets. These disturbances frequently occur late at night or early in the morning, severely disrupting residents' sleep and overall peace.",
         "count": 13,
         "complaints": [
             "Loud music from a nearby banquet hall is causing significant noise pollution late into the night. It's disturbing residents.",
@@ -149,8 +149,8 @@
     },
     {
         "cluster_id": 5,
-        "cluster_name": "Blocked Drains and Water Stagnation",
-        "cluster_summary": "Customers are reporting widespread issues of blocked, clogged, and overflowing drainage systems causing water accumulation, waterlogging, and stagnation across various blocks. These issues frequently lead to foul smells, unhygienic conditions, and increased mosquito breeding.",
+        "cluster_name": "Clogged Drains and Waterlogging",
+        "cluster_summary": "Customers are reporting widespread issues of clogged, blocked, and overflowing drainage systems, which are causing significant water accumulation, foul smells, and mosquito breeding. These recurring problems create unhygienic conditions and inconvenience across various locations, especially after rainfall.",
         "count": 18,
         "complaints": [
             "The drainage system near the market area in A4 is blocked, leading to water accumulation after light rain.",
@@ -175,8 +175,8 @@
     },
     {
         "cluster_id": 6,
-        "cluster_name": "Frequent Power & Voltage Issues",
-        "cluster_summary": "Customers are reporting widespread issues of frequent and prolonged power outages occurring daily, often during peak hours and without notice, disrupting work, studies, and daily activities. Many also experience recurring voltage fluctuations that damage appliances and affect performance.",
+        "cluster_name": "Frequent Power & Voltage Problems",
+        "cluster_summary": "Customers are reporting widespread issues of frequent and prolonged power cuts, often occurring daily during peak hours, coupled with common voltage fluctuations. These issues are significantly disrupting daily life, work, and studies, while also causing damage to home appliances.",
         "count": 16,
         "complaints": [
             "Frequent power cuts, especially during peak hours, are disrupting daily activities and work-from-home schedules.",
@@ -199,8 +199,8 @@
     },
     {
         "cluster_id": 7,
-        "cluster_name": "Public Safety & Nuisance Concerns",
-        "cluster_summary": "Customers are reporting widespread issues of increasing stray dog populations that are aggressive and a nuisance, posing significant safety threats, especially to children, near public spaces. Furthermore, residents are concerned about suspicious individuals loitering after dark in these areas, exacerbating public safety worries.",
+        "cluster_name": "Stray Dogs & Public Safety",
+        "cluster_summary": "Customers are reporting widespread issues of aggressive stray dogs causing safety concerns for children and residents, alongside an increasing dog population across several blocks. There are also complaints about suspicious individuals and activity near children's play areas and vacant plots late at night, prompting calls for increased patrolling.",
         "count": 9,
         "complaints": [
             "There's an increase in stray dog population in B4, and some are aggressive, raising concerns about public safety.",
@@ -216,8 +216,8 @@
     },
     {
         "cluster_id": 8,
-        "cluster_name": "Unsanitary Public Toilets",
-        "cluster_summary": "Customers are reporting widespread issues of unhygienic and poorly maintained public restrooms and washrooms across various locations. They frequently lack basic supplies and regular cleaning, rendering them practically unusable due to unsanitary conditions.",
+        "cluster_name": "Unsanitary Public Toilet Conditions",
+        "cluster_summary": "Customers are reporting widespread issues of unhygienic, unclean, and poorly maintained public toilets and restrooms across various locations. These facilities often lack basic supplies and regular cleaning, rendering them practically unusable and causing frustration.",
         "count": 5,
         "complaints": [
             "Public restrooms near the community center are unhygienic and lack basic amenities.",
@@ -230,7 +230,7 @@
     {
         "cluster_id": 9,
         "cluster_name": "Improper Waste Disposal & Burning",
-        "cluster_summary": "Customers are reporting widespread issues of illegal dumping of construction debris and open burning of various waste types. These practices result in environmental and air pollution, public space obstructions, and significant health concerns.",
+        "cluster_summary": "Customers are reporting widespread issues of illegal dumping of construction debris and other waste in vacant lots, footpaths, and roadsides. Additionally, residents are openly burning various types of waste, causing significant air pollution, health concerns, and general nuisance.",
         "count": 7,
         "complaints": [
             "Residents are burning garbage in the open ground, causing air pollution and health concerns.",
@@ -245,7 +245,7 @@
     {
         "cluster_id": 10,
         "cluster_name": "Play Area Safety Hazards",
-        "cluster_summary": "Customers are reporting widespread issues of dangerous open manholes and exposed electrical wires near children's parks and play areas. These significant safety risks require immediate attention to prevent accidents.",
+        "cluster_summary": "Customers are reporting widespread issues of dangerous open manholes and exposed electrical wires in and around children's play areas. These hazards pose significant safety risks, especially to children, and require immediate attention.",
         "count": 5,
         "complaints": [
             "Some electrical wires are hanging loosely from poles near the children's play area. This is very dangerous.",
@@ -258,7 +258,7 @@
     {
         "cluster_id": 11,
         "cluster_name": "Community Hall Facility Issues",
-        "cluster_summary": "Customers are reporting widespread issues of malfunctioning air conditioning systems in community halls, causing discomfort during events and concerns about energy waste from units left on unnecessarily. Furthermore, some community halls are also plagued with outdated and broken gym equipment, making it difficult for residents to utilize the facilities effectively.",
+        "cluster_summary": "Customers are reporting widespread issues of the community hall's air conditioning system either malfunctioning or being used inefficiently. Additionally, residents are experiencing difficulties due to outdated and broken gym equipment, hindering effective facility usage.",
         "count": 5,
         "complaints": [
             "The community hall's air conditioning system is not working properly, making events uncomfortable.",
@@ -270,8 +270,8 @@
     },
     {
         "cluster_id": 12,
-        "cluster_name": "Security and Facility Failures",
-        "cluster_summary": "Customers are reporting widespread issues of security failures due to absent or negligent personnel and faulty security equipment, compromising resident safety and access. Additionally, essential amenities like elevators and automatic gates are frequently malfunctioning, causing significant inconvenience.",
+        "cluster_name": "Building Operations and Security Failures",
+        "cluster_summary": "Customers are reporting widespread issues of essential building facilities, such as elevators and automatic gates, frequently malfunctioning or being out of service. Additionally, there are significant lapses in security personnel presence and vigilance, with gates left unguarded or cameras non-functional, creating major safety and convenience concerns.",
         "count": 9,
         "complaints": [
             "The main gate of our society in A3 is often left unguarded, raising security concerns for residents, especially at night. We need consistent security personnel.",
@@ -287,8 +287,8 @@
     },
     {
         "cluster_id": 13,
-        "cluster_name": "Hazardous Tree Branches",
-        "cluster_summary": "Customers are reporting widespread issues of dangerously hanging, fallen, or overgrown tree branches creating safety hazards. These pose risks to pedestrians, vehicles, and infrastructure, often blocking access or posing fire risks due to proximity to power lines.",
+        "cluster_name": "Hazardous Tree & Branch Issues",
+        "cluster_summary": "Customers are reporting widespread issues of dangerous and overgrown tree branches posing various safety risks. These include branches hanging precariously, fallen debris blocking access, and overgrowth near power lines or obstructing pathways.",
         "count": 6,
         "complaints": [
             "A tree branch near house number 7 in Block B1 is dangerously hanging over the road and could fall anytime, posing a risk to vehicles and pedestrians. It needs to be trimmed.",
@@ -301,8 +301,8 @@
     },
     {
         "cluster_id": 14,
-        "cluster_name": "Unclean Common Areas",
-        "cluster_summary": "Customers are reporting widespread issues of neglected common area cleanliness, particularly in stairwells, corridors, and lobbies. They frequently observe dust, cobwebs, and debris due to a lack of regular and thorough cleaning.",
+        "cluster_name": "Common Area Cleanliness Issues",
+        "cluster_summary": "Customers are reporting widespread issues of deteriorating cleanliness in common areas, including dusty stairwells, dirty corridors, and neglected lobbies. They are also concerned about unswept roads, indicating a lack of regular maintenance and cleaning services.",
         "count": 5,
         "complaints": [
             "Despite repeated requests, the road outside my house in A2 remains unswept for over a week, accumulating dust and debris. This affects the overall cleanliness of the block.",
@@ -314,8 +314,8 @@
     },
     {
         "cluster_id": 15,
-        "cluster_name": "Community Water Leakage Issues",
-        "cluster_summary": "Customers are reporting widespread issues of water leaks and seepage across various community areas, including basements, public washrooms, and main pipelines. These problems are causing dampness, waterlogging, water waste, and potential structural damage, requiring urgent attention.",
+        "cluster_name": "Widespread Water Leakage Concerns",
+        "cluster_summary": "Customers are reporting widespread issues of water leaks and seepage across various common areas, including basements and public spaces. These persistent leaks are causing dampness, waterlogging, and significant water waste, with potential for structural damage.",
         "count": 4,
         "complaints": [
             "There's a significant leak in the main water pipeline near the community center in B4, leading to wastage of water and waterlogging on the road. It has been leaking for two days.",
@@ -326,8 +326,8 @@
     },
     {
         "cluster_id": 16,
-        "cluster_name": "Illegal Parking & Obstruction",
-        "cluster_summary": "Customers are reporting widespread issues of illegal parking and public space obstruction by vehicles and street vendors. These problems impede pedestrian movement, cause traffic congestion, and occupy critical public access areas.",
+        "cluster_name": "Illegal Parking and Obstruction",
+        "cluster_summary": "Customers are reporting widespread issues of illegal and abandoned vehicles, alongside unauthorized vendor encroachment, in various blocks. These incidents lead to significant obstruction of footpaths and roads, causing traffic congestion and posing safety risks.",
         "count": 6,
         "complaints": [
             "Unauthorised parking by commercial vehicles near the main road of B2 is causing traffic congestion and making it difficult for residents to exit their driveways. This happens daily.",
