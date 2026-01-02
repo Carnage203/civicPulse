@@ -1,9 +1,6 @@
 from mongodb.mongo_client import complaints_collection
 from datetime import datetime
 from bson import ObjectId
-from typing import List
-from llm.chat import embed_generator
-from llm import agents 
 
 
 def create_complaint(complaint_data: dict) -> str:
