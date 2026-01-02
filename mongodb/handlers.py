@@ -2,10 +2,7 @@ from mongodb.mongo_client import complaints_collection
 from datetime import datetime
 from bson import ObjectId
 from typing import List
-from llm.chat import embed_generator
-from llm import agents 
-from sklearn.metrics.pairwise import cosine_similarity 
-import numpy as np 
+
 
 def create_complaint(complaint_data: dict) -> str:
     required_fields = {
