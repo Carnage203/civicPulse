@@ -14,7 +14,8 @@ from llm import agents, chat
 from mongodb.handlers import (
     create_complaint,
     get_complaints_by_status,
-    update_complaint_status
+    update_complaint_status,
+    find_similar_complaints
 )
 from mongodb.clustering_pipeline import run_clustering_pipeline
 
@@ -153,6 +154,10 @@ def report_complaint_tab():
 
 
 def cards_dashboard_tab():
+    if "similar_complaints" not in st.session_state:
+        st.session_state.similar_complaints = {}
+               
+
     st.header("📊 Complaint Status Dashboard")
     st.markdown("Manage all complaints from one place ⚡")
 
@@ -188,6 +193,17 @@ def cards_dashboard_tab():
                     f"<small><i>Last Updated: {c.get('updated_at', datetime.now(timezone.utc)).strftime('%Y-%m-%d %H:%M:%S')}</i></small>",
                     unsafe_allow_html=True
                 )
+
+                if st.button("🔍 Similar Cases", key=f"sim_{c['_id']}"):
+                    st.session_state.similar_complaints[c["_id"]] = find_similar_complaints(
+                        str(c["_id"]), top_k=5
+                    )
+
+
+                if c["_id"] in st.session_state.similar_complaints:
+                       with st.expander("Similar Complaints"):
+                            for s in st.session_state.similar_complaints[c["_id"]]:
+                                st.markdown(f"**👤 {s['name']}**  \n{s['description']}")   
 
                 b1, b2 = st.columns(2)
                 with b1:
@@ -227,6 +243,17 @@ def cards_dashboard_tab():
                     unsafe_allow_html=True
                 )
 
+                if st.button("🔍 Similar Cases", key=f"sim_{c['_id']}"):
+                    st.session_state.similar_complaints[c["_id"]] = find_similar_complaints(
+                        str(c["_id"]), top_k=5
+                    )
+
+
+                if c["_id"] in st.session_state.similar_complaints:
+                       with st.expander("Similar Complaints"):
+                            for s in st.session_state.similar_complaints[c["_id"]]:
+                                st.markdown(f"**👤 {s['name']}**  \n{s['description']}")
+
                 b1, b2 = st.columns(2)
                 with b1:
                     if st.button("↩️ Move to Pending", key=f"pend_{c['_id']}", use_container_width=True):
@@ -264,6 +291,17 @@ def cards_dashboard_tab():
                     f"<small><i>Last Updated: {c.get('updated_at', datetime.now(timezone.utc)).strftime('%Y-%m-%d %H:%M:%S')}</i></small>",
                     unsafe_allow_html=True
                 )
+
+                if st.button("🔍 Similar Cases", key=f"sim_{c['_id']}"):
+                    st.session_state.similar_complaints[c["_id"]] = find_similar_complaints(
+                        str(c["_id"]), top_k=5
+                    )
+
+
+                if c["_id"] in st.session_state.similar_complaints:
+                       with st.expander("Similar Complaints"):
+                            for s in st.session_state.similar_complaints[c["_id"]]:
+                                st.markdown(f"**👤 {s['name']}**  \n{s['description']}")
 
                 b1, b2 = st.columns(2)
                 with b1:

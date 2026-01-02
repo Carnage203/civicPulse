@@ -1,7 +1,8 @@
 from mongodb.mongo_client import complaints_collection
 from datetime import datetime
 from bson import ObjectId
-
+from sklearn.metrics.pairwise import cosine_similarity 
+import numpy as np 
 
 def create_complaint(complaint_data: dict) -> str:
     required_fields = {
@@ -104,3 +105,37 @@ def update_complaint_status(complaint_id: str, new_status: str, extra_fields: di
     except Exception as e:
         print(f"Error updating complaint status: {e}")
         return False
+
+def find_similar_complaints(complaint_id: str, top_k: int = 5):
+    """
+    Finds top K similar complaints using cosine similarity on embeddings.
+    Summary is NOT used. Only embedding → similarity.
+    """
+    target = complaints_collection.find_one({"_id": ObjectId(complaint_id)})
+    if not target:
+        return []
+
+    target_embedding = np.array(target["embedding"]).reshape(1, -1)
+
+    all_complaints = list(
+        complaints_collection.find({"_id": {"$ne": ObjectId(complaint_id)}})
+    )
+
+    if not all_complaints:
+        return []
+
+    embeddings = np.array([c["embedding"] for c in all_complaints])
+    similarities = cosine_similarity(target_embedding, embeddings)[0]
+
+    sorted_idx = similarities.argsort()[::-1][:top_k]
+
+    similar = [
+        {
+            "name": all_complaints[i]["resident_name"],
+            "description": all_complaints[i]["description"],
+            "similarity": float(similarities[i])
+        }
+        for i in sorted_idx
+    ]
+
+    return similar
