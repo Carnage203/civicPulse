@@ -10,10 +10,6 @@ from sklearn.cluster import DBSCAN
 import umap.umap_ as umap
 from google.genai import types
 
-project_root = str(Path(__file__).resolve().parents[1])
-if project_root not in sys.path:
-    sys.path.insert(0, project_root)
-
 from mongodb.handlers import get_all_complaints
 from llm.llm_client import gemini_client
 from llm.prompts import CLUSTER_SUMMARY_PROMPT

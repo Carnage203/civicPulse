@@ -9,9 +9,6 @@ from mongodb.clustering_pipeline import run_clustering_pipeline
 from mongodb.analytics import get_analytics_data
 import sys
 
-project_root = str(Path(__file__).resolve().parents[1])
-if project_root not in sys.path:
-    sys.path.insert(0, project_root)
 
 
 def admin_analytics_tab():

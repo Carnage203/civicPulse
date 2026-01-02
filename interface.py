@@ -5,10 +5,6 @@ from llm import chat
 
 st.set_page_config(page_title="CivicPulse Dashboard", layout="wide")
 
-project_root = str(Path(__file__).resolve().parents[1])
-if project_root not in sys.path:
-    sys.path.insert(0, project_root)
-
 from report_complaint import report_complaint_tab
 from cards_dasboard import cards_dashboard_tab
 from admin_analytics import admin_analytics_tab
