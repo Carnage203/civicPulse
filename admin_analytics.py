@@ -8,7 +8,7 @@ from llm import agents
 from mongodb.clustering_pipeline import run_clustering_pipeline
 from mongodb.analytics import get_analytics_data
 import sys
-
+BASE_DIR = Path(__file__).resolve().parent
 
 
 def admin_analytics_tab():
@@ -188,7 +188,7 @@ def admin_analytics_tab():
 
         st.markdown("---")
         
-        json_path = Path(project_root) / "mongodb" / "clusters.json"
+        json_path = BASE_DIR / "mongodb" / "clusters.json"
 
         col1, col2 = st.columns([4, 1])
         
