@@ -2,7 +2,7 @@
 
 **CivicPulse** is an advanced, AI-powered civic complaint management and analytics platform. It bridges the gap between residents and city administrators by leveraging Generative AI to streamline issue reporting, cluster community problems, and provide actionable insights through real-time dashboards.
 
-### 🌐 Live Demo
+### 🌐 Deployed App
 
 Try out the deployed application: **[CivicPulse App](https://civic-pulse1.streamlit.app)**
 
@@ -13,7 +13,7 @@ Try out the deployed application: **[CivicPulse App](https://civic-pulse1.stream
 
 ---
 
-## 📜 Table the Contents
+## 📜 Table of Contents
 
 - [About](#-about)
 - [Key Features](#-key-features)
@@ -25,7 +25,7 @@ Try out the deployed application: **[CivicPulse App](https://civic-pulse1.stream
 
 ## 💡 About
 
-CivicPulse utilizes modern Large Language Models (LLMs) and vector search to transform how civic issues are tracked and resolved. Unlike traditional ticketing systems, CivicPulse understands the _context_ of complaints, automatically grouping similar issues (clustering) and allowing administrators to "chat" with their data to uncover trends.
+CivicPulse utilizes Large Language Models (LLMs) and vector search to transform how civic issues are tracked and resolved. Unlike traditional ticketing systems, CivicPulse understands the _context_ of complaints, automatically grouping similar issues (clustering) and allowing administrators to "chat" with their data to uncover trends.
 
 ---
 
@@ -112,6 +112,7 @@ CivicPulse utilizes modern Large Language Models (LLMs) and vector search to tra
     ```
 
 ---
+
 
 
 
