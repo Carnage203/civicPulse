@@ -66,14 +66,19 @@ CivicPulse utilizes Large Language Models (LLMs) and vector search to transform 
 ## 📸 Screenshots
 
   <img width="1797" height="536" alt="1homepage" src="https://github.com/user-attachments/assets/177aeeb1-0885-49b7-974f-e1de3f05a8f2" />
+  
 ---
   <img width="1777" height="725" alt="2residentportal" src="https://github.com/user-attachments/assets/67dc97b1-aef2-42c2-89c6-2eeaab953f98" />
+  
   ---
   <img width="1792" height="827" alt="3 1admindasboard" src="https://github.com/user-attachments/assets/8ffdc6b0-d440-44f8-bd15-1d8a8be03eec" />
+  
   ---
   <img width="1477" height="692" alt="3 2admindasboard" src="https://github.com/user-attachments/assets/ed9f2038-3366-4f58-8ab2-fdd82efea0b2" />
+  
   ---
   <img width="447" height="702" alt="3 3admindasboard" src="https://github.com/user-attachments/assets/78965ca8-8d16-4b19-93e4-ea584c71f3cb" />
+  
   ---
   <img width="1746" height="662" alt="3 4admindasboard" src="https://github.com/user-attachments/assets/ee1ec7a5-51cd-416b-b4eb-e3391e333758" />
 
@@ -117,6 +122,7 @@ CivicPulse utilizes Large Language Models (LLMs) and vector search to transform 
     ```
 
 ---
+
 
 
 
